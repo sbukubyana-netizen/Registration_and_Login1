@@ -14,6 +14,8 @@ public class Registration_and_Login1 {
    
     public static void main(String[] args) {
         Scanner scan= new Scanner(System.in);
+
+        Login login = new Login();
         
         //Declaring variables for global use
         String username = "";
@@ -87,79 +89,13 @@ while (true) {
         System.out.println("Enter your password to login");
         String login_password= scan.nextLine();
         
-         
-        if (login_username.equals( username) && (login_password.equals(password) ) ) { //"=" if i was using numbers
-    
-            System.out.println("Welcome" +" "+username+" "+"it is great to see you again");
-        break;} // break loop
-            
-        else {
-            System.out.println("Username or password incorrect please try again");
-            }
-           } 
-          
-   class login { // checking if the user meets certain conditions before granting access
-
-       
-       boolean checkUserName(String username) {
-           if ((username.length() <=5 && username.contains("_"))) {
-               return true;
-           } else {
-               return false;
-           }
-       }
-       
-    boolean checkPasswordComplexity(String password) {
-        if (password.length() >=8 && password.matches("^(?=.*[A-Z])(?=.*[0-9])(?=.*[\\W_]).{8,}$")) {
-            return true;
-        } else {
-            return false;
-        }
-        
-    }
-    boolean checkCellPhoneNumber (String cellnumber) {
-        if (cellnumber.matches("^\\+[0-9]{1,3}[0-9]{1,15}$")) {
-            return true;
-        } else {
-            return false;
-        }
-    } 
-        String registerUser(String username, String password) {
-        String message= "";
-        
-        
-        if (!(username.length() <=5 && username.contains("_")))// "!", means if length is NOT valid
-        {
-            message+= "The username is incorrectly formatted";   // "+= means add and assign        
-        }
-        if (! (password.length() >=8 && password.matches("^(?=.*[A-Z])(?=.*[0-9])(?=.*[\\W_]).{8,}$"))) {
-      
-          message+="The password does not meet the complexity requirements";
-            }
-        if (message.isEmpty()) {
-            message = "The above conditions have been met, and the user has been registered successfully";
-        }
-           return message;
-    }
-    boolean loginUser (String login_username, String username, String login_password, String password) {
-        if (login_username.equals( username) && (login_password.equals(password) )) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-        String returnLoginStatus (String login_username, String username, String login_password, String password) {
-        String message ="";
-        
-        if (!login_username.equals( username) && (login_password.equals(password) ) ) {
-            
-        message+="A failed login"; 
-        } else {
-            message+="A successful login";
-        }
-            
-       return message;
-        }
-   }
-    }
+        if (login.loginUser(login_username, username, login_password, password)) {
+    System.out.println("Welcome " + username + " it is great to see you again");
+    break;
+} else {
+    System.out.println("Username or password incorrect please try again");
 }
+        }
+    }
+} 
+        
