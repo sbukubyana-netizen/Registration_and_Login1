@@ -6,10 +6,7 @@ package com.mycompany.registration_and_login1;
 
 import java.util.Scanner;
 
-/**
- *
- * @author Student
- */
+
 public class Registration_and_Login1 {
    
     public static void main(String[] args) {
