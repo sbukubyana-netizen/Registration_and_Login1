@@ -2,15 +2,12 @@ package com.mycompany.registration_and_login1;
 
 public class Login { // checking if the user meets certain conditions before gran
 
-
-
     public boolean checkUserName(String username) {
         return username.length() <= 5 && username.contains("_");
     }
 
     public boolean checkPasswordComplexity(String password) {
-        return password.length() >= 8 &&
-               password.matches("^(?=.*[A-Z])(?=.*[0-9])(?=.*[\\W_]).{8,}$");
+        return password.length() >= 8 && password.matches("^(?=.*[A-Z])(?=.*[0-9])(?=.*[\\W_]).{8,}$");
     }
 
     public boolean checkCellPhoneNumber(String cellnumber) {
@@ -24,8 +21,7 @@ public class Login { // checking if the user meets certain conditions before gra
             message += "The username is incorrectly formatted. ";
         }
 
-        if (!(password.length() >= 8 &&
-              password.matches("^(?=.*[A-Z])(?=.*[0-9])(?=.*[\\W_]).{8,}$"))) {
+        if (!(password.length() >= 8 && password.matches("^(?=.*[A-Z])(?=.*[0-9])(?=.*[\\W_]).{8,}$"))) {
             message += "The password does not meet the complexity requirements.";
         }
 
@@ -36,18 +32,16 @@ public class Login { // checking if the user meets certain conditions before gra
         return message;
     }
 
-    public boolean loginUser(String login_username, String username,
-                             String login_password, String password) {
+    public boolean loginUser(String login_username, String username, String login_password, String password) {
         return login_username.equals(username) && login_password.equals(password);
     }
 
-    public String returnLoginStatus(String login_username, String username,
-                                   String login_password, String password) {
+public String returnLoginStatus(String login_username, String username,String login_password, String password) {
 
-        if (!login_username.equals(username) || !login_password.equals(password)) {
-            return "A failed login";
-        } else {
-            return "A successful login";
-        }
+    if (!login_username.equals(username) || !login_password.equals(password)) {
+        return "A failed login";
+    } else {
+        return "A successful login";
     }
+}
 }
