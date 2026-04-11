@@ -77,22 +77,35 @@ System.out.println("Cell phone number incorrectly formatted or does not contain 
 }
 }
 
-    
-//Login Process with a loop
+// previous registration details for username, password, and cell must remain the same)
+
+// to give an update if the registration is successful or not
+String regStatus = login.registerUser(username, password);
+System.out.println(regStatus);
+
+// 2. LOGIN PROCESS
 while (true) {
-        System.out.println("Enter your username to login");
-        String login_username= scan.nextLine();
+    System.out.println("Enter your username to login");
+    String login_username = scan.nextLine();
+    
+    System.out.println("Enter your password to login");
+    String login_password = scan.nextLine();
+    
+    // We check if the login is successful or not
+    if (login.loginUser(login_username, username, login_password, password)) {
         
-        System.out.println("Enter your password to login");
-        String login_password= scan.nextLine();
+        // Print the "A successful login" message from the Login class
+        System.out.println(login.returnLoginStatus(login_username, username, login_password, password));
         
-        if (login.loginUser(login_username, username, login_password, password)) {
-    System.out.println("Welcome " + username + " it is great to see you again");
-    break;
-} else {
-    System.out.println("Username or password incorrect please try again");
-}
-        }
+        System.out.println("Welcome " + username + " it is great to see you again");
+        break;
+    } else {
+        // Print the "A failed login" message from the Login class
+        System.out.println(login.returnLoginStatus(login_username, username, login_password, password));
+        
+        // YOUR MUST-HAVE MESSAGE:
+        System.out.println("Username or password incorrect please try again");
     }
-} 
-        
+}
+    }
+}

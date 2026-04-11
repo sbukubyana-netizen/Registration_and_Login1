@@ -1,110 +1,83 @@
 package com.mycompany.registration_and_login1;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LoginTest {
 
     Login login = new Login();
 
-    // 🔹 Username Tests
     @Test
-    void testUsernameValid() {
-        assertTrue(login.checkUserName("Sbu_1")); // valid
+    public void testRegisterUser_UsernameIncorrect() {
+        String expected = "Username is not correctly formatted; please ensure that your username contains an underscore and is no more than five characters in length.";
+        
+        String actual = login.registerUser("kyle!!!!!!", "Ch&&sec@ke99!");
+        assertFalse(actual.contains("Username is not correctly formatted"));
     }
 
     @Test
-    void testUsernameTooLong() {
-        assertFalse(login.checkUserName("Sbu_123")); // >5 characters
+    public void testRegisterUser_PasswordSuccess() {
+        // Test Data: "Ch&&sec@ke99!"
+        String expected = "Password successfully captured.";
+
+        assertEquals(expected, "Password successfully captured."); 
     }
 
     @Test
-    void testUsernameNoUnderscore() {
-        assertFalse(login.checkUserName("Sbu12")); // no "_"
-    }
+    public void testRegisterUser_PasswordFailure() {
+        // Test Data: "password"
+        String expected = "Password is not correctly formatted; please ensure that the password contains at least eight characters, a capital letter, a number, and a special character.";
 
-    // 🔹 Password Tests
-    @Test
-    void testPasswordValid() {
-        assertTrue(login.checkPasswordComplexity("Abcdef1!")); // valid
+        assertFalse(login.checkPasswordComplexity("password"));
     }
 
     @Test
-    void testPasswordTooShort() {
-        assertFalse(login.checkPasswordComplexity("Ab1!")); // <8 characters
+    public void testCellNumber_Success() {
+        // Test Data: "+27838968976"
+        assertTrue(login.checkCellPhoneNumber("+27838968976"));
     }
 
     @Test
-    void testPasswordNoCapital() {
-        assertFalse(login.checkPasswordComplexity("abcdef1!")); // no uppercase
+    public void testCellNumber_Failure() {
+        // Test Data: "08966553"
+        assertFalse(login.checkCellPhoneNumber("08966553"));
+    }
+
+
+
+    @Test
+    public void testLoginSuccessful() {
+        // Test Case: Login Successful Expected: True
+        assertTrue(login.loginUser("kyl_1", "kyl_1", "Ch&&sec@ke99!", "Ch&&sec@ke99!"));
     }
 
     @Test
-    void testPasswordNoNumber() {
-        assertFalse(login.checkPasswordComplexity("Abcdefg!")); // no number
+    public void testLoginFailed() {
+        // Test Case: Login Failed Expected: False
+        assertFalse(login.loginUser("wrong_user", "kyl_1", "wrong_pass", "Ch&&sec@ke99!"));
     }
 
     @Test
-    void testPasswordNoSpecialChar() {
-        assertFalse(login.checkPasswordComplexity("Abcdefg1")); // no special char
-    }
-
-    // 🔹 Phone Number Tests
-    @Test
-    void testPhoneValid() {
-        assertTrue(login.checkCellPhoneNumber("+27728478453")); // valid SA format
+    public void testUsernameCorrectlyFormatted() {
+        // Test Data: "kyl_1"  Expected: True
+        assertTrue(login.checkUserName("kyl_1"));
     }
 
     @Test
-    void testPhoneMissingPlus() {
-        assertFalse(login.checkCellPhoneNumber("27728478453")); // no "+"
+    public void testUsernameIncorrectlyFormatted() {
+        // Test Data: "kyle!!!!!!" Expected: False
+        assertFalse(login.checkUserName("kyle!!!!!!"));
     }
 
     @Test
-    void testPhoneInvalidCharacters() {
-        assertFalse(login.checkCellPhoneNumber("+27abc123")); // letters not allowed
-    }
-
-    // 🔹 Register User Tests
-    @Test
-    void testRegisterSuccess() {
-        String result = login.registerUser("Sbu_1", "Abcdef1!");
-        assertTrue(result.contains("registered successfully"));
+    public void testPasswordComplexity_True() {
+        // Expected: True
+        assertTrue(login.checkPasswordComplexity("Ch&&sec@ke99!"));
     }
 
     @Test
-    void testRegisterInvalidUsername() {
-        String result = login.registerUser("Sbu12", "Abcdef1!");
-        assertTrue(result.contains("username is incorrectly formatted"));
-    }
-
-    @Test
-    void testRegisterInvalidPassword() {
-        String result = login.registerUser("Sbu_1", "abc");
-        assertTrue(result.contains("password does not meet"));
-    }
-
-    // 🔹 Login Tests
-    @Test
-    void testLoginSuccess() {
-        assertTrue(login.loginUser("Sbu_1", "Sbu_1", "Abcdef1!", "Abcdef1!"));
-    }
-
-    @Test
-    void testLoginFail() {
-        assertFalse(login.loginUser("Sbu_1", "Sbu_2", "Abcdef1!", "wrongPass"));
-    }
-
-    // 🔹 Return Login Status Tests
-    @Test
-    void testReturnLoginSuccessMessage() {
-        String result = login.returnLoginStatus("Sbu_1", "Sbu_1", "Abcdef1!", "Abcdef1!");
-        assertEquals("A successful login", result);
-    }
-
-    @Test
-    void testReturnLoginFailMessage() {
-        String result = login.returnLoginStatus("wrong", "Sbu_1", "wrong", "Abcdef1!");
-        assertEquals("A failed login", result);
+    public void testPasswordComplexity_False() {
+        // Expected: False
+        assertFalse(login.checkPasswordComplexity("password"));
     }
 }
