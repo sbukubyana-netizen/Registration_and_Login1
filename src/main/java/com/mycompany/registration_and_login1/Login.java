@@ -1,6 +1,6 @@
 package com.mycompany.registration_and_login1;
 
-public class Login { // checking if the user meets certain conditions before gran
+public class Login { // checking if the user meets certain conditions before granting access
 
     public boolean checkUserName(String username) {
         return username.length() <= 5 && username.contains("_");

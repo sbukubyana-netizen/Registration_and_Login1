@@ -32,7 +32,7 @@ public class Registration_and_Login1 {
          
         else {
  System.out.println("Username is not correctly formartted; please ensure that username contains an underscore and is no more than five characters in length");}
-         }
+ }
                 
         
 while (true) { //Loop until conditions for password are met
@@ -42,15 +42,15 @@ password = scan.nextLine();
 String regex_password = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[\\W_]).{8,}$"; // Declaring and assigning regex
 
 if (password.length() >=8 && password.matches(regex_password)) {
-     /** ^,it means the beginning of the string
-         (?=.*[A-Z], it scans for at least one uppercase
-         (?=.*[0-9]), it scans for at least one number
-         (?=.*[\\W_]), it scans for at least one special character
-          {8,} , it means at least 8 characters long
-         +$, means end of the string, containing one or more previous groups */ 
-     System.out.println("Password successfully captured");
+    /** ^,it means the beginning of the string
+    (?=.*[A-Z], it scans for at least one uppercase
+    (?=.*[0-9]), it scans for at least one number
+    (?=.*[\\W_]), it scans for at least one special character
+    {8,} , it means at least 8 characters long
+     +$, means end of the string, containing one or more previous groups */ 
+    System.out.println("Password successfully captured");
 break;} //break loop
-   else {
+else {
 System.out.println("Password is not correctly formatted; please ensure that the password contains at least eight characters, a capital letter, a number, and a special character");
 }  
 }
@@ -103,7 +103,6 @@ while (true) {
         // Print the "A failed login" message from the Login class
         System.out.println(login.returnLoginStatus(login_username, username, login_password, password));
         
-        // YOUR MUST-HAVE MESSAGE:
         System.out.println("Username or password incorrect please try again");
     }
 }
